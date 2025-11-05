@@ -43,7 +43,7 @@ function Header() {
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
             fill="none"
-            viewBox="0 0 24 24"
+            viewBox="0 24 24"
             stroke="currentColor"
           >
             <path
@@ -66,7 +66,7 @@ function Header() {
           <ul className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 py-2 md:py-0">
             <li>
               <a
-                href="#home"
+                href="#hakkinda" // Updated
                 className="block text-black hover:text-gray-700 py-1"
               >
                 Hakkında
@@ -74,7 +74,7 @@ function Header() {
             </li>
             <li>
               <a
-                href="#about"
+                href="#puanlar" // Updated
                 className="block text-black hover:text-gray-700 py-1"
               >
                 Puanlar
@@ -82,7 +82,15 @@ function Header() {
             </li>
             <li>
               <a
-                href="#services"
+                href="#etkinlikler" // Updated
+                className="block text-black hover:text-gray-700 py-1"
+              >
+                Etkinlikler
+              </a>
+            </li>
+            <li>
+              <a
+                href="#sss" // Updated
                 className="block text-black hover:text-gray-700 py-1"
               >
                 SSS
@@ -90,7 +98,7 @@ function Header() {
             </li>
             <li>
               <a
-                href="#contact"
+                href="#ekibimiz" // Updated
                 className="block text-black hover:text-gray-700 py-1"
               >
                 Ekibimiz
@@ -98,7 +106,7 @@ function Header() {
             </li>
             <li>
               <a
-                href="#contact"
+                href="#galeri" // Updated
                 className="block text-black hover:text-gray-700 py-1"
               >
                 Galeri

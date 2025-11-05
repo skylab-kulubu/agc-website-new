@@ -1,12 +1,13 @@
 import React from "react";
 
-function Divider() {
+function Divider({ className = "" }) { // Added className prop for flexibility
   return (
-    <div className="w-full">
+    <div className={`w-full ${className}`}>
       <img
         src="/assets/section_divider.png"
         alt="Section Divider"
-        className="relative bottom-4 lg:bottom-15 w-full h-auto object-contain"
+        // Adjusted to be more generally applicable, specific offsets can be handled by parent or className
+        className="w-full h-auto object-contain" 
       />
     </div>
   );

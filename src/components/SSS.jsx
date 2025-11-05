@@ -6,27 +6,27 @@ export default function SSS() {
   const faqItems = [
     {
       id: 0,
-      question: "Lorem ipsum dolor sit amet",
+      question: "Yarışmaya kimler katılabilir?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra.",
+        "Yarışmamız, üniversite öğrencileri başta olmak üzere kodlamaya ve algoritma problemlerine ilgi duyan herkese açıktır. Detaylı katılım koşulları için başvuru sayfamızı ziyaret edebilirsiniz.",
     },
     {
       id: 1,
-      question: "Lorem ipsum dolor sit amet",
+      question: "Yarışma formatı nasıl olacak?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra.",
+        "Yarışma, belirli bir süre içinde çözülmesi gereken algoritma ve programlama sorularından oluşacaktır. Sorular genellikle veri yapıları, algoritmalar ve problem çözme becerilerini ölçmeye yönelik olacaktır.",
     },
     {
       id: 2,
-      question: "Lorem ipsum dolor sit amet",
+      question: "Kayıt ücreti var mı?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra.",
+        "Hayır, yarışmamıza katılım tamamen ücretsizdir. Amacımız, daha fazla kişinin bu alanda kendini geliştirmesine olanak sağlamaktır.",
     },
     {
       id: 3,
-      question: "Lorem ipsum dolor sit amet",
+      question: "Takım olarak katılabilir miyiz?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra.",
+        "Evet, yarışmaya bireysel olarak katılabileceğiniz gibi, belirli kurallar çerçevesinde takım olarak da katılabilirsiniz. Takım katılım koşulları ve üye sayısı gibi detaylar duyurularımızda belirtilecektir.",
     },
   ];
 
@@ -35,7 +35,7 @@ export default function SSS() {
   };
 
   return (
-    <div className="bg-[#2269A9] flex flex-col items-center py-48 pb-56">
+    <div id="sss" className="bg-[#2269A9] flex flex-col items-center py-48 pb-56">
       {/* Logo */}
       <div className="mb-4 mr-auto ml-24">
         <img

@@ -30,7 +30,7 @@ function Leaderboard() {
   ];
 
   return (
-    <div className="p-24 w-full mx-auto">
+    <div id="puanlar" className="p-24 w-full mx-auto">
       {/* Logo */}
       <div className="mb-8">
         <img

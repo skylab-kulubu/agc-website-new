@@ -83,7 +83,7 @@ function GallerySection() {
   }, []);
 
   return (
-    <div className="bg-[#0e2a44] py-12 px-4">
+    <div id="galeri" className="bg-[#0e2a44] py-12 px-4">
       <div className="mb-8 mr-auto ml-24">
         <img
           src="/assets/gallery/gallery_sticker.png"
