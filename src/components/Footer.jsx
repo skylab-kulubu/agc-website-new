@@ -10,16 +10,34 @@ const Footer = () => {
 
       {/* Content container */}
       <div className="relative z-10">
+        {/* Logos */}
+        <div className="flex justify-center items-center gap-8 mb-8">
+          <img
+            src="/algolab.png"
+            alt="Algolab"
+            className="h-20 object-contain"
+          />
+          <img
+            src="/skylab.png"
+            alt="Skylab"
+            className="h-20 object-contain"
+          />
+          <img
+            src="/weblab.svg"
+            alt="Weblab"
+            className="h-20 object-contain"
+          />
+        </div>
+
         {/* Contact text */}
         <div className="mb-6 text-lg font-medium">
-          Soracak başka sorularınız için{" "}
+          Sorularınız için:{" "}
           <a
-            href="mailto:skylab_ytu@gmail.com"
+            href="mailto:info@yildizskylab.com"
             className="underline hover:text-purple-200 transition-colors"
           >
-            skylab_ytu@gmail.com
+            info@yildizskylab.com
           </a>{" "}
-          mail adresine ulaşabilirsiniz.
         </div>
 
         {/* Social media icons - white icons on transparent background */}

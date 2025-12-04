@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Header() {
+function Header({ applicationUrl }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -58,9 +58,8 @@ function Header() {
 
       {/* Navigation and Apply button - hidden on mobile unless menu is open */}
       <div
-        className={`${
-          isMenuOpen ? "flex" : "hidden"
-        } md:flex flex-col md:flex-row w-full md:w-auto items-center md:items-center transition-all duration-300 ease-in-out`}
+        className={`${isMenuOpen ? "flex" : "hidden"
+          } md:flex flex-col md:flex-row w-full md:w-auto items-center md:items-center transition-all duration-300 ease-in-out`}
       >
         <nav className="nav w-full md:w-auto md:ml-auto">
           <ul className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 py-2 md:py-0">
@@ -114,9 +113,14 @@ function Header() {
             </li>
           </ul>
         </nav>
-        <button className="w-full md:w-auto text-black px-4 md:px-16 py-2 hover:text-gray-700 text-xl md:text-2xl cursor-pointer mt-2 md:mt-0">
+        <a
+          href={applicationUrl || "#"}
+          target={applicationUrl ? "_blank" : "_self"}
+          rel="noopener noreferrer"
+          className="w-full md:w-auto text-black px-4 md:px-16 py-2 hover:text-gray-700 text-xl md:text-2xl cursor-pointer mt-2 md:mt-0 text-center"
+        >
           Başvur
-        </button>
+        </a>
       </div>
     </header>
   );

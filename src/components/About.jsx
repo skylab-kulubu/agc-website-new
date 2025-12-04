@@ -1,6 +1,6 @@
 import React from "react";
 
-function About() {
+function About({ applicationUrl }) {
   return (
     <div id="hakkinda" className="flex flex-col md:flex-col lg:flex-row items-center  py-6 px-6 lg:px-32 lg:pb-60 bg-[#2269A9]">
       <img
@@ -12,9 +12,14 @@ function About() {
         <p className="text-lg text-white mb-4">
           AlgoLab Gençlik Kodlama Yarışması (AGC), genç beyinleri algoritma ve programlama dünyasına teşvik etmek, problem çözme yeteneklerini geliştirmek ve onlara bu alanda bir kariyer yolu açmak amacıyla düzenlenmektedir. Her seviyeden katılımcıya açık olan yarışmamız, dostça bir rekabet ortamında bilgi ve deneyim paylaşımını hedefler.
         </p>
-        <button className="bg-[#FBFBFF] text-black py-2 px-8 rounded">
+        <a
+          href={applicationUrl || "#"}
+          target={applicationUrl ? "_blank" : "_self"}
+          rel="noopener noreferrer"
+          className="bg-[#FBFBFF] text-black py-2 px-8 rounded inline-block"
+        >
           Başvur
-        </button>
+        </a>
       </div>
     </div>
   );

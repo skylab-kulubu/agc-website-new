@@ -24,7 +24,7 @@ const Team = () => {
     const fetchTeamMembers = async () => {
       try {
         const response = await fetch(
-          "https://api.yildizskylab.com/api/staff/getAllByTenant?tenant=AGC"
+          "https://api.yildizskylab.com/api/event-types/AGC/coordinators"
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -154,9 +154,10 @@ const Team = () => {
                     style={{ paddingBottom: "133.33%" }}
                   >
                     <img
-                      src={member.photo.photoUrl}
+                      src={member.profilePictureUrl || "/assets/default-avatar.png"}
                       alt={`${member.firstName} ${member.lastName}`}
                       className="absolute top-0 left-0 w-full h-full object-cover object-center border-white border-6"
+                      onError={(e) => { e.target.onerror = null; e.target.src = "/assets/default-avatar.png"; }}
                     />
                   </div>
                   <div className="p-4 text-center">
@@ -232,7 +233,7 @@ const Team = () => {
                   if (maxLeft > 0) { // Avoid division by zero if maxLeft is 0
                     percentage = thumbPosition / maxLeft;
                   }
-                  
+
                   // Use navMaxIndex for calculating the new index
                   const newIndex = Math.min(navMaxIndex, Math.max(0, Math.round(percentage * navMaxIndex)));
 

@@ -16,6 +16,7 @@ function App() {
   const [nextUpcomingEventForHero, setNextUpcomingEventForHero] = useState({
     title: "",
     targetDate: null,
+    formUrl: "",
   });
   const [eventsLoading, setEventsLoading] = useState(true);
   const [eventsError, setEventsError] = useState(null);
@@ -25,7 +26,7 @@ function App() {
       try {
         setEventsLoading(true);
         const response = await fetch(
-          "https://api.yildizskylab.com/api/events/getAllByTenant?tenant=AGC"
+          "https://api.yildizskylab.com/api/events/event-type?eventTypeName=AGC&includeEventType=false&includeSession=false&includeCompetitors=false&includeImages=false&includeSeason=false"
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -38,32 +39,33 @@ function App() {
           const now = new Date();
           const upcomingActiveEvents = result.data
             .filter(event => {
-              const eventDate = new Date(event.date.split(' ')[0].split('-').reverse().join('-') + 'T' + event.date.split(' ')[1]);
-              return event.isActive && eventDate > now;
+              const eventDate = new Date(event.startDate);
+              return event.active && eventDate > now;
             })
             .sort((a, b) => {
-              const dateA = new Date(a.date.split(' ')[0].split('-').reverse().join('-') + 'T' + a.date.split(' ')[1]);
-              const dateB = new Date(b.date.split(' ')[0].split('-').reverse().join('-') + 'T' + b.date.split(' ')[1]);
+              const dateA = new Date(a.startDate);
+              const dateB = new Date(b.startDate);
               return dateA - dateB; // Sort ascending (soonest first)
             });
 
           if (upcomingActiveEvents.length > 0) {
             const nextEvent = upcomingActiveEvents[0];
             setNextUpcomingEventForHero({
-              title: nextEvent.title,
-              targetDate: new Date(nextEvent.date.split(' ')[0].split('-').reverse().join('-') + 'T' + nextEvent.date.split(' ')[1]).getTime(),
+              title: nextEvent.name,
+              targetDate: new Date(nextEvent.startDate).getTime(),
+              formUrl: nextEvent.formUrl,
             });
           } else {
-             setNextUpcomingEventForHero({ title: "No upcoming events scheduled.", targetDate: null });
+            setNextUpcomingEventForHero({ title: "No upcoming events scheduled.", targetDate: null, formUrl: "" });
           }
           setEventsError(null);
         } else {
           setEventsError(result.message || "Failed to fetch event data.");
-          setNextUpcomingEventForHero({ title: "Could not load event data.", targetDate: null });
+          setNextUpcomingEventForHero({ title: "Could not load event data.", targetDate: null, formUrl: "" });
         }
       } catch (e) {
         setEventsError(e.message);
-        setNextUpcomingEventForHero({ title: "Error loading events.", targetDate: null });
+        setNextUpcomingEventForHero({ title: "Error loading events.", targetDate: null, formUrl: "" });
         console.error("Error fetching events in App.jsx:", e);
       } finally {
         setEventsLoading(false);
@@ -75,13 +77,13 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header applicationUrl={nextUpcomingEventForHero.formUrl} />
       <Hero
         nextEventNameProp={nextUpcomingEventForHero.title}
         targetDateProp={nextUpcomingEventForHero.targetDate}
         loadingCountdownProp={eventsLoading} // Pass loading state for initial display
       />
-      <About />
+      <About applicationUrl={nextUpcomingEventForHero.formUrl} />
 
       <Divider className="relative bottom-4 lg:bottom-15" />
 
