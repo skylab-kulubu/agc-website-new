@@ -64,9 +64,9 @@ function Events({ allEventsData, loading: propLoading, error: propError }) {
       <div className="mb-12 md:mb-16 text-center px-4">
         {/* User should replace this with an actual events sticker or a styled title */}
         <img
-          src="/assets/sss/sss_sticker.png"
-          alt="Upcoming Events"
-          className="w-auto h-40 md:h-48 mx-auto drop-shadow-xl"
+          src="/assets/events/events_sticker.png"
+          alt="Etkinlikler"
+          className="w-auto h-56 md:h-72 mx-auto drop-shadow-xl object-contain"
         />
       </div>
 

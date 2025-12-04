@@ -19,7 +19,7 @@ function About({ applicationUrl }) {
         <div className="glass p-8 rounded-2xl border border-white/10 relative">
           <h2 className="text-3xl font-bold text-white mb-6">Hakkımızda</h2>
           <p className="text-lg text-gray-300 mb-8 leading-relaxed">
-            AlgoLab Gençlik Kodlama Yarışması (AGC), genç beyinleri algoritma ve programlama dünyasına teşvik etmek, problem çözme yeteneklerini geliştirmek ve onlara bu alanda bir kariyer yolu açmak amacıyla düzenlenmektedir. Her seviyeden katılımcıya açık olan yarışmamız, dostça bir rekabet ortamında bilgi ve deneyim paylaşımını hedefler.
+            Algorithm Games Challenge (AGC), genç beyinleri algoritma ve programlama dünyasına teşvik etmek, problem çözme yeteneklerini geliştirmek ve onlara bu alanda bir kariyer yolu açmak amacıyla düzenlenmektedir. Her seviyeden katılımcıya açık olan yarışmamız, dostça bir rekabet ortamında bilgi ve deneyim paylaşımını hedefler.
           </p>
           <a
             href={applicationUrl || "#"}

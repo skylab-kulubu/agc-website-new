@@ -99,17 +99,17 @@ function GallerySection() {
               Loading gallery...
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[250px] md:auto-rows-[300px] gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {images.map((image, index) => (
                 <div
                   key={index}
-                  className={`relative overflow-hidden rounded-xl group ${image.span} transition-all duration-300 hover:z-10 hover:shadow-2xl hover:shadow-blue-500/20`}
+                  className="relative overflow-hidden rounded-xl group aspect-square transition-all duration-300 hover:z-10 hover:shadow-2xl hover:shadow-blue-500/20"
                 >
                   <div className="absolute inset-0 bg-gray-800 animate-pulse"></div>
                   <img
                     src={image.src}
                     alt={`Gallery image ${index + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

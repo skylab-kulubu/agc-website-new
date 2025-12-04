@@ -147,7 +147,7 @@ const Team = () => {
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {teamMembers.map((member) => (
-              <div key={member.id} className="flex-shrink-0 w-64 snap-start group">
+              <div key={member.id} className="flex-shrink-0 w-80 snap-start group">
                 <div className="glass rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10">
                   <div
                     className="relative w-full"
@@ -161,11 +161,11 @@ const Team = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
                   </div>
-                  <div className="p-4 text-center relative -mt-12">
-                    <h3 className="text-xl font-bold text-white mb-1 drop-shadow-md">
+                  <div className="p-4 text-center">
+                    <h3 className="text-xl font-bold text-white mb-1 drop-shadow-md line-clamp-2 h-14 flex items-center justify-center leading-tight px-1">
                       {member.firstName} {member.lastName}
                     </h3>
-                    <p className="text-blue-300 text-sm font-medium mb-3">{member.department}</p>
+                    <p className="text-blue-300 text-sm font-medium mb-3 truncate w-full px-2">{member.department}</p>
                     {member.linkedin && (
                       <a
                         href={member.linkedin}
