@@ -50,62 +50,66 @@ function Hero({ nextEventNameProp, targetDateProp, loadingCountdownProp }) {
       // If no targetDateProp or still loading, set default or error message
       setCountdownItems(initialCountdownItems);
       if (!nextEventNameProp) { // If prop is empty and not loading, means error or no data
-          setNextEventName("Countdown not available.");
+        setNextEventName("Countdown not available.");
       }
     }
   }, [nextEventNameProp, targetDateProp, loadingCountdownProp]);
 
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center py-10"
-      style={{
-        backgroundImage: "url('/assets/hero/background.webp')",
-      }}
+      className="relative flex flex-col items-center justify-center min-h-screen py-20 overflow-hidden"
     >
-      <div className="mb-8">
-        <img src="/assets/hero/hero_sticker.png" alt="Logo" className="h-60 sm:h-80" />
-      </div>
-      <div className="text-center mb-6 max-w-screen-md mx-auto px-4">
-        <p className="text-xl sm:text-2xl text-white">
-          Algoritma ve programlama tutkunlarını bir araya getiren bu heyecan verici yarışmada sen de yerini al! Yeteneklerini sergile, sınırlarını zorla ve büyük ödülleri kazanma şansını yakala.
-        </p>
-      </div>
+      {/* Background Image with Overlay */}
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/assets/hero/background.webp')" }}
+      />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-slate-900/90" />
 
-      {/* Countdown Section Title */}
-      {!loadingCountdown && nextEventName && (
-        <div className="text-center mb-4">
-          <p className="text-lg sm:text-xl text-yellow-400 font-semibold animate-pulse">
-            {nextEventName.includes("No upcoming") || nextEventName.includes("Error") || nextEventName.includes("started") ? "" : "Next Event:"} {nextEventName}
+      <div className="relative z-10 flex flex-col items-center w-full max-w-5xl px-4">
+        <div className="mb-10">
+          <img src="/assets/hero/hero_sticker.png" alt="Logo" className="h-48 sm:h-64 md:h-80 drop-shadow-2xl" />
+        </div>
+
+        <div className="text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-200 font-light leading-relaxed">
+            Algoritma ve programlama tutkunlarını bir araya getiren bu heyecan verici yarışmada sen de yerini al!
+            <span className="block mt-4 text-gray-400 text-base">Yeteneklerini sergile, sınırlarını zorla ve büyük ödülleri kazanma şansını yakala.</span>
           </p>
         </div>
-      )}
-       {loadingCountdown && (
-        <div className="text-center mb-4">
-          <p className="text-lg sm:text-xl text-gray-300">Loading countdown...</p>
-        </div>
-      )}
 
-
-      {/* Countdown Timer */}
-      <div className="flex flex-wrap justify-center space-x-0">
-        {countdownItems.map((item, index) => (
-          <div
-            key={index}
-            className={`text-center p-3 sm:p-4 md:p-6 border-2 sm:border-4 border-white bg-gradient-to-r from-[#0A2033] to-[#071522] 
-                w-1/4 max-w-[100px] sm:max-w-[120px]
-                ${index === 0 ? "rounded-l-lg border-r-0" : ""} 
-                ${
-                  index === countdownItems.length - 1
-                    ? "rounded-r-lg border-l-0"
-                    : ""
-                }
-                ${(index > 0 && index < countdownItems.length -1) ? "border-l-0 border-r-0" : ""}
-                `}
-          >
-            <span className="block text-2xl sm:text-3xl md:text-4xl font-bold text-white">{item.value}</span>
-            <span className="block text-xs sm:text-sm text-gray-300">{item.label}</span>
+        {/* Countdown Section Title */}
+        {!loadingCountdown && nextEventName && (
+          <div className="text-center mb-8">
+            <div className="inline-block px-6 py-2 rounded-full glass border border-yellow-500/30 bg-yellow-500/10">
+              <p className="text-lg sm:text-xl text-yellow-400 font-semibold tracking-wide">
+                {nextEventName.includes("No upcoming") || nextEventName.includes("Error") || nextEventName.includes("started") ? "" : "Sıradaki Etkinlik:"} <span className="text-white">{nextEventName}</span>
+              </p>
+            </div>
           </div>
-        ))}
+        )}
+        {loadingCountdown && (
+          <div className="text-center mb-8">
+            <p className="text-lg text-gray-400 animate-pulse">Yükleniyor...</p>
+          </div>
+        )}
+
+        {/* Countdown Timer */}
+        <div className="grid grid-cols-4 gap-4 sm:gap-6 w-full max-w-3xl">
+          {countdownItems.map((item, index) => (
+            <div
+              key={index}
+              className="glass flex flex-col items-center justify-center p-4 sm:p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 group"
+            >
+              <span className="text-3xl sm:text-5xl font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">
+                {item.value}
+              </span>
+              <span className="text-xs sm:text-sm font-medium text-gray-400 uppercase tracking-widest">
+                {item.label}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

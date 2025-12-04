@@ -129,48 +129,49 @@ const Team = () => {
   }
 
   return (
-    <div id="ekibimiz" className="bg-[#0e2a44] py-12 px-4">
+    <div id="ekibimiz" className="py-20 md:py-24 px-4">
       {/* Logo */}
-      <div className="mb-4 mr-auto ml-24">
+      <div className="mb-12 md:mb-16 flex justify-center">
         <img
           src="/assets/team/team_sticker.png"
           alt="SSS"
-          className="w-auto h-56"
+          className="w-auto h-40 md:h-56 drop-shadow-xl"
         />
       </div>
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="relative">
           {/* Slider Container */}
           <div
             ref={sliderRef}
-            className="flex overflow-x-auto scrollbar-hide snap-x snap-mandatory gap-8 pb-8"
+            className="flex overflow-x-auto scrollbar-hide snap-x snap-mandatory gap-6 md:gap-8 pb-12"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {teamMembers.map((member) => (
-              <div key={member.id} className="flex-shrink-0 w-64 snap-start">
-                <div className=" overflow-hidden">
+              <div key={member.id} className="flex-shrink-0 w-64 snap-start group">
+                <div className="glass rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/10">
                   <div
                     className="relative w-full"
-                    style={{ paddingBottom: "133.33%" }}
+                    style={{ paddingBottom: "120%" }}
                   >
                     <img
-                      src={member.profilePictureUrl || "/assets/default-avatar.png"}
+                      src={member.profilePictureUrl || "/agc.png"}
                       alt={`${member.firstName} ${member.lastName}`}
-                      className="absolute top-0 left-0 w-full h-full object-cover object-center border-white border-6"
-                      onError={(e) => { e.target.onerror = null; e.target.src = "/assets/default-avatar.png"; }}
+                      className={`absolute top-0 left-0 w-full h-full object-center transition-transform duration-500 ${!member.profilePictureUrl ? "object-contain p-4 bg-slate-800" : "object-cover"}`}
+                      onError={(e) => { e.target.onerror = null; e.target.src = "/agc.png"; }}
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
                   </div>
-                  <div className="p-4 text-center">
-                    <h3 className="text-xl font-bold text-white">
+                  <div className="p-4 text-center relative -mt-12">
+                    <h3 className="text-xl font-bold text-white mb-1 drop-shadow-md">
                       {member.firstName} {member.lastName}
                     </h3>
-                    <p className="text-white">{member.department}</p>
+                    <p className="text-blue-300 text-sm font-medium mb-3">{member.department}</p>
                     {member.linkedin && (
                       <a
                         href={member.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-3 inline-block text-[#0077b5] hover:text-[#005582] transition-colors"
+                        className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/10 hover:bg-[#0077b5] text-white transition-all duration-300"
                         aria-label={`${member.firstName} ${member.lastName}'s LinkedIn Profile`}
                       >
                         <LinkedInIcon />
@@ -183,77 +184,7 @@ const Team = () => {
           </div>
         </div>
 
-        {/* Custom Horizontal Scrollbar - only render if there are slides */}
-        {totalSlides > 0 && (
-          <div className="max-w-2xl mx-auto mt-8 relative h-2">
-            {/* Background track - clickable for jumping to position */}
-            <div
-              className="absolute w-full h-full bg-gray-600/30 rounded-full cursor-pointer"
-              onClick={(e) => {
-                if (navMaxIndex === 0) return; // Don't do anything if not scrollable
-                const rect = e.currentTarget.getBoundingClientRect();
-                const clickPosition = (e.clientX - rect.left) / rect.width;
-                // Ensure newIndex is within [0, navMaxIndex]
-                const newIndex = Math.min(
-                  navMaxIndex,
-                  Math.max(0, Math.round(clickPosition * navMaxIndex))
-                );
-                setCurrentIndex(newIndex);
-                scrollToIndex(newIndex);
-              }}
-            ></div>
-
-            {/* Thumb/handle - draggable */}
-            <div
-              className="absolute h-full bg-white rounded-full transition-all duration-100 cursor-grab active:cursor-grabbing"
-              style={{
-                width: thumbWidthStyle,
-                left: thumbLeftStyle,
-              }}
-              onMouseDown={(startEvent) => {
-                if (navMaxIndex === 0) return; // Don't do anything if not scrollable
-                startEvent.preventDefault();
-                const thumbEl = startEvent.currentTarget;
-                const trackEl = thumbEl.parentElement;
-                const trackRect = trackEl.getBoundingClientRect();
-                const trackWidth = trackRect.width;
-
-                // Calculate the draggable range
-                const maxLeft = trackWidth - thumbEl.offsetWidth;
-
-                // Calculate offset within the thumb where user clicked
-                const initialX = startEvent.clientX;
-                const thumbLeft = thumbEl.offsetLeft;
-                const offsetX = initialX - thumbLeft - trackRect.left;
-
-                const handleMouseMove = (moveEvent) => {
-                  const x = moveEvent.clientX - trackRect.left - offsetX;
-                  const thumbPosition = Math.max(0, Math.min(maxLeft, x));
-                  let percentage = 0;
-                  if (maxLeft > 0) { // Avoid division by zero if maxLeft is 0
-                    percentage = thumbPosition / maxLeft;
-                  }
-
-                  // Use navMaxIndex for calculating the new index
-                  const newIndex = Math.min(navMaxIndex, Math.max(0, Math.round(percentage * navMaxIndex)));
-
-                  if (newIndex !== currentIndex) {
-                    setCurrentIndex(newIndex);
-                    scrollToIndex(newIndex);
-                  }
-                };
-
-                const handleMouseUp = () => {
-                  document.removeEventListener("mousemove", handleMouseMove);
-                  document.removeEventListener("mouseup", handleMouseUp);
-                };
-
-                document.addEventListener("mousemove", handleMouseMove);
-                document.addEventListener("mouseup", handleMouseUp);
-              }}
-            ></div>
-          </div>
-        )}
+        {/* Custom Horizontal Scrollbar removed as per user request */}
       </div>
     </div>
   );

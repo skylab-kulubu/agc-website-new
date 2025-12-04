@@ -2,51 +2,52 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#3626A7] bg-opacity-70 p-12 text-white text-center relative">
+    <footer className="glass-strong pt-16 pb-8 text-white text-center relative mt-20 border-t border-white/10">
       {/* Background pattern */}
-      <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute w-full h-full bg-[url('/assets/footer_bg.png')] bg-cover"></div>
+      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
+        <div className="absolute w-full h-full bg-[url('/assets/footer_bg.png')] bg-cover bg-center"></div>
       </div>
 
       {/* Content container */}
-      <div className="relative z-10">
+      <div className="relative z-10 container mx-auto px-4">
         {/* Logos */}
-        <div className="flex justify-center items-center gap-8 mb-8">
+        <div className="flex flex-wrap justify-center items-center gap-8 mb-12">
           <img
             src="/algolab.png"
             alt="Algolab"
-            className="h-20 object-contain"
+            className="h-16 md:h-20 object-contain transition-transform duration-300"
           />
           <img
             src="/skylab.png"
             alt="Skylab"
-            className="h-20 object-contain"
+            className="h-16 md:h-20 object-contain transition-transform duration-300"
           />
           <img
             src="/weblab.svg"
             alt="Weblab"
-            className="h-20 object-contain"
+            className="h-16 md:h-20 object-contain transition-transform duration-300"
           />
         </div>
 
         {/* Contact text */}
-        <div className="mb-6 text-lg font-medium">
-          Sorularınız için:{" "}
+        <div className="mb-8">
+          <p className="text-gray-400 mb-2">Sorularınız için:</p>
           <a
             href="mailto:info@yildizskylab.com"
-            className="underline hover:text-purple-200 transition-colors"
+            className="text-xl font-medium text-white hover:text-blue-400 transition-colors relative group"
           >
             info@yildizskylab.com
-          </a>{" "}
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+          </a>
         </div>
 
         {/* Social media icons - white icons on transparent background */}
-        <div className="flex justify-center space-x-6">
+        <div className="flex justify-center space-x-8">
           {/* YouTube */}
-          <a href="#" className="hover:opacity-80 transition-opacity">
+          <a href="#" className="hover:text-red-500 transition-colors duration-300">
             <svg
-              className="w-7 h-7"
-              fill="white"
+              className="w-8 h-8"
+              fill="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -55,10 +56,10 @@ const Footer = () => {
           </a>
 
           {/* LinkedIn */}
-          <a href="#" className="hover:opacity-80 transition-opacity">
+          <a href="#" className="hover:text-blue-600 transition-colors duration-300">
             <svg
-              className="w-7 h-7"
-              fill="white"
+              className="w-8 h-8"
+              fill="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -67,10 +68,10 @@ const Footer = () => {
           </a>
 
           {/* Instagram */}
-          <a href="#" className="hover:opacity-80 transition-opacity">
+          <a href="#" className="hover:text-pink-500 transition-colors duration-300">
             <svg
-              className="w-7 h-7"
-              fill="white"
+              className="w-8 h-8"
+              fill="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -79,16 +80,20 @@ const Footer = () => {
           </a>
 
           {/* Twitter/X */}
-          <a href="#" className="hover:opacity-80 transition-opacity">
+          <a href="#" className="hover:text-gray-400 transition-colors duration-300">
             <svg
-              className="w-7 h-7"
-              fill="white"
+              className="w-8 h-8"
+              fill="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>
           </a>
+        </div>
+
+        <div className="mt-12 text-sm text-gray-500">
+          &copy; {new Date().getFullYear()} Yildiz Skylab. All rights reserved.
         </div>
       </div>
     </footer>

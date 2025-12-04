@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function SSS() {
-  const [openItem, setOpenItem] = useState(2); // Third item open by default
+  const [openItem, setOpenItem] = useState(null); // No item open by default
 
   const faqItems = [
     {
@@ -35,51 +35,47 @@ export default function SSS() {
   };
 
   return (
-    <div id="sss" className="bg-[#2269A9] flex flex-col items-center py-48 pb-56">
+    <div id="sss" className="flex flex-col items-center py-20 md:py-24 pb-32 md:pb-40">
       {/* Logo */}
-      <div className="mb-4 mr-auto ml-24">
+      <div className="mb-12 md:mb-16 flex justify-center">
         <img
           src="/assets/sss/sss_sticker.png"
           alt="SSS"
-          className="w-auto h-56"
+          className="w-auto h-40 md:h-56 drop-shadow-xl"
         />
       </div>
 
       {/* FAQ Accordion */}
-      <div className="w-full px-48 overflow-hidden">
-        {faqItems.map((item, index) => (
-          <div key={item.id} className={`overflow-hidden shadow-md`}>
+      <div className="w-full max-w-4xl px-4">
+        <div className="space-y-4">
+          {faqItems.map((item, index) => (
             <div
-              className={`flex justify-between items-center p-5 cursor-pointer ${
-                item.id % 2 === 0
-                  ? "bg-[#DDEBF8] text-[#071522]"
-                  : "bg-[#0E2A44] text-white"
-              } ${index === 0 ? "rounded-t-lg" : ""} 
-              ${
-                index === faqItems.length - 1 && openItem !== item.id
-                  ? "rounded-b-lg"
-                  : ""
-              }`}
-              onClick={() => toggleItem(item.id)}
+              key={item.id}
+              className={`glass rounded-xl overflow-hidden transition-all duration-300 ${openItem === item.id ? 'bg-white/10 border-blue-500/30 shadow-lg shadow-blue-500/10' : 'hover:bg-white/5'}`}
             >
-              <h3 className="text-lg font-semibold">{item.question}</h3>
-              <span className="text-2xl">
-                {openItem === item.id ? "−" : "+"}
-              </span>
-            </div>
-            {openItem === item.id && (
               <div
-                className={`p-5 ${
-                  item.id % 2 === 0
-                    ? "bg-[#DDEBF8] text-[#071522]"
-                    : "bg-[#0E2A44] text-white"
-                } ${index === faqItems.length - 1 && "rounded-b-lg"}`}
+                className="flex justify-between items-center p-6 cursor-pointer"
+                onClick={() => toggleItem(item.id)}
               >
-                <p>{item.answer}</p>
+                <h3 className={`text-lg font-semibold transition-colors ${openItem === item.id ? 'text-blue-300' : 'text-white'}`}>
+                  {item.question}
+                </h3>
+                <span className={`text-2xl transition-transform duration-300 ${openItem === item.id ? 'rotate-180 text-blue-400' : 'text-gray-400'}`}>
+                  {openItem === item.id ? "−" : "+"}
+                </span>
               </div>
-            )}
-          </div>
-        ))}
+
+              <div
+                className={`transition-all duration-300 ease-in-out overflow-hidden ${openItem === item.id ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                  }`}
+              >
+                <div className="p-6 pt-0 text-gray-300 leading-relaxed border-t border-white/5">
+                  <p>{item.answer}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -83,33 +83,36 @@ function GallerySection() {
   }, []);
 
   return (
-    <div id="galeri" className="bg-[#0e2a44] py-12 px-4">
-      <div className="mb-8 mr-auto ml-24">
+    <div id="galeri" className="py-20 md:py-24 px-4">
+      <div className="mb-12 md:mb-16 flex justify-center">
         <img
           src="/assets/gallery/gallery_sticker.png"
           alt="Gallery"
-          className="w-auto h-48"
+          className="w-auto h-40 md:h-56 drop-shadow-xl"
         />
       </div>
-      <div className="w-full max-w-6xl mx-auto">
+      <div className="w-full max-w-7xl mx-auto">
         <div className="container mx-auto">
           {/* Responsive Masonry-style Grid */}
           {loading ? (
-            <div className="text-center text-white py-12">
+            <div className="text-center text-white py-12 animate-pulse">
               Loading gallery...
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[300px] gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[250px] md:auto-rows-[300px] gap-6">
               {images.map((image, index) => (
                 <div
                   key={index}
-                  className={`relative overflow-hidden border-6 border-white bg-gray-800 ${image.span}`}
+                  className={`relative overflow-hidden rounded-xl group ${image.span} transition-all duration-300 hover:z-10 hover:shadow-2xl hover:shadow-blue-500/20`}
                 >
+                  <div className="absolute inset-0 bg-gray-800 animate-pulse"></div>
                   <img
                     src={image.src}
                     alt={`Gallery image ${index + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+                    loading="lazy"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               ))}
             </div>

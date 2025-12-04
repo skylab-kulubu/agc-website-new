@@ -8,18 +8,18 @@ function Header({ applicationUrl }) {
   };
 
   return (
-    <header className="flex flex-wrap justify-between items-center py-2 px-4 md:px-8 bg-white shadow-md relative">
+    <header className="glass-strong sticky top-0 z-50 flex flex-wrap justify-between items-center py-3 px-6 md:px-12 transition-all duration-300">
       <div className="flex items-center">
         <img
-          src="/assets/header/algolab_logo.png"
+          src="/algolab.png"
           alt="Logo"
-          className="h-10 md:h-14"
+          className="h-10 md:h-12 brightness-0 invert"
         />
       </div>
 
       {/* Mobile menu button */}
       <button
-        className="md:hidden text-black p-2"
+        className="md:hidden text-white p-2 focus:outline-none"
         onClick={toggleMenu}
         aria-label="Toggle menu"
       >
@@ -56,68 +56,45 @@ function Header({ applicationUrl }) {
         )}
       </button>
 
-      {/* Navigation and Apply button - hidden on mobile unless menu is open */}
+      {/* Navigation and Apply button */}
       <div
         className={`${isMenuOpen ? "flex" : "hidden"
-          } md:flex flex-col md:flex-row w-full md:w-auto items-center md:items-center transition-all duration-300 ease-in-out`}
+          } md:flex flex-col md:flex-row w-full md:w-auto items-center md:items-center transition-all duration-300 ease-in-out mt-4 md:mt-0`}
       >
         <nav className="nav w-full md:w-auto md:ml-auto">
-          <ul className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 py-2 md:py-0">
-            <li>
-              <a
-                href="#hakkinda" // Updated
-                className="block text-black hover:text-gray-700 py-1"
-              >
-                Hakkında
-              </a>
-            </li>
-            <li>
-              <a
-                href="#puanlar" // Updated
-                className="block text-black hover:text-gray-700 py-1"
-              >
-                Puanlar
-              </a>
-            </li>
-            <li>
-              <a
-                href="#etkinlikler" // Updated
-                className="block text-black hover:text-gray-700 py-1"
-              >
-                Etkinlikler
-              </a>
-            </li>
-            <li>
-              <a
-                href="#sss" // Updated
-                className="block text-black hover:text-gray-700 py-1"
-              >
-                SSS
-              </a>
-            </li>
-            <li>
-              <a
-                href="#ekibimiz" // Updated
-                className="block text-black hover:text-gray-700 py-1"
-              >
-                Ekibimiz
-              </a>
-            </li>
-            <li>
-              <a
-                href="#galeri" // Updated
-                className="block text-black hover:text-gray-700 py-1"
-              >
-                Galeri
-              </a>
-            </li>
+          <ul className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 text-center">
+            {[
+              { name: "Hakkında", id: "hakkinda" },
+              { name: "Puanlar", id: "puanlar" },
+              { name: "Etkinlikler", id: "etkinlikler" },
+              { name: "SSS", id: "sss" },
+              { name: "Ekibimiz", id: "ekibimiz" },
+              { name: "Galeri", id: "galeri" },
+            ].map((item) => (
+              <li key={item.name}>
+                <a
+                  href={`#${item.id}`}
+                  className="block text-gray-300 hover:text-white transition-colors duration-200 font-medium text-sm tracking-wide uppercase"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMenuOpen(false);
+                    const element = document.getElementById(item.id);
+                    if (element) {
+                      element.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                >
+                  {item.name}
+                </a>
+              </li>
+            ))}
           </ul>
         </nav>
         <a
           href={applicationUrl || "#"}
           target={applicationUrl ? "_blank" : "_self"}
           rel="noopener noreferrer"
-          className="w-full md:w-auto text-black px-4 md:px-16 py-2 hover:text-gray-700 text-xl md:text-2xl cursor-pointer mt-2 md:mt-0 text-center"
+          className="mt-4 md:mt-0 md:ml-8 px-6 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-full font-semibold shadow-lg hover:shadow-blue-500/30 transition-all duration-300"
         >
           Başvur
         </a>
@@ -125,5 +102,4 @@ function Header({ applicationUrl }) {
     </header>
   );
 }
-
 export default Header;
