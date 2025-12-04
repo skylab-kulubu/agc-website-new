@@ -9,7 +9,7 @@ function About({ applicationUrl }) {
       <div className="w-full lg:w-1/2 relative group">
         <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
         <img
-          src="assets/about/about_image.png"
+          src="hakkinda.jpeg"
           alt="About Us"
           className="relative w-full h-auto rounded-xl shadow-2xl transition duration-500"
         />
