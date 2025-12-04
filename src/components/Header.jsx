@@ -9,11 +9,14 @@ function Header({ applicationUrl }) {
 
   return (
     <header className="glass-strong sticky top-0 z-50 flex flex-wrap justify-between items-center py-3 px-6 md:px-12 transition-all duration-300">
-      <div className="flex items-center">
+      <div
+        className="flex items-center cursor-pointer"
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      >
         <img
           src="/algolab.png"
           alt="Logo"
-          className="h-10 md:h-12 brightness-0 invert"
+          className="h-12 md:h-16 brightness-0 invert"
         />
       </div>
 
@@ -69,7 +72,7 @@ function Header({ applicationUrl }) {
               { name: "Etkinlikler", id: "etkinlikler" },
               { name: "SSS", id: "sss" },
               { name: "Ekibimiz", id: "ekibimiz" },
-              { name: "Galeri", id: "galeri" },
+              // { name: "Galeri", id: "galeri" },
             ].map((item) => (
               <li key={item.name}>
                 <a

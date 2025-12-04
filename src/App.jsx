@@ -103,7 +103,7 @@ function App() {
       <Divider className="relative bottom-10" />
 
       <Team />
-      <GallerySection />
+      {/* <GallerySection /> */}
 
       <Footer />
     </div>
