@@ -82,6 +82,7 @@ function App() {
         nextEventNameProp={nextUpcomingEventForHero.title}
         targetDateProp={nextUpcomingEventForHero.targetDate}
         loadingCountdownProp={eventsLoading} // Pass loading state for initial display
+        applicationUrl={nextUpcomingEventForHero.formUrl}
       />
       <About applicationUrl={nextUpcomingEventForHero.formUrl} />
 

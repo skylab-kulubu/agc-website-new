@@ -7,7 +7,7 @@ const initialCountdownItems = [
   { label: "Saniye", value: "00" },
 ];
 
-function Hero({ nextEventNameProp, targetDateProp, loadingCountdownProp }) {
+function Hero({ nextEventNameProp, targetDateProp, loadingCountdownProp, applicationUrl }) {
   const [countdownItems, setCountdownItems] = useState(initialCountdownItems);
   const [nextEventName, setNextEventName] = useState("");
   // Use the loading prop from App.jsx for initial state
@@ -109,6 +109,18 @@ function Hero({ nextEventNameProp, targetDateProp, loadingCountdownProp }) {
               </span>
             </div>
           ))}
+        </div>
+
+        {/* Mobile Apply Button */}
+        <div className="mt-12 md:hidden w-full max-w-xs">
+          <a
+            href={applicationUrl || "#"}
+            target={applicationUrl ? "_blank" : "_self"}
+            rel="noopener noreferrer"
+            className="block w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-center rounded-xl font-bold shadow-lg shadow-blue-900/40 transition-all duration-300 transform hover:-translate-y-1"
+          >
+            Başvur
+          </a>
         </div>
       </div>
     </div>
